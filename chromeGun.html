@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chrome Gun</title>
+	<style>
+		body {
+			height: 1000px;
+			background-image: url('img/chromeGun.jpg');
+			background-attachment: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+	</style>
+	<script>
+	
+		function sleep(ms) {
+    		return new Promise(resolve => setTimeout(resolve, ms));
+		}
+		
+		function getRandomInt(max) {
+  			return Math.floor(Math.random() * max);
+		}
+		
+		var bulletX = window.screenX - 500; // Go to right 500
+		var bulletY = (window.screenY + (window.screenY + window.innerHeight)) / 2; // Get center point from top of window and bottom
+		
+		
+		function shoot() {
+			var bullet = window.open("", "", "width=310,height=185");
+			
+			bullet.moveTo(window.screenX, bulletY - 170); // START from screenX and where the barrel is (y -170)
+			
+			bullet.document.body.style.backgroundImage = "url('https://image.shutterstock.com/image-photo/closeup-9mm-bullet-on-white-260nw-1196052412.jpg')";
+			bullet.document.body.style.backgroundAttachment = 'fixed';
+			bullet.document.body.style.backgroundPosition = 'center';
+			bullet.document.body.style.backgroundRepeat = 'no-repeat';
+			
+			for(i = window.screenX; i > (window.screenX - 1900); i-=5) {
+				bullet.moveTo(i, bulletY - 170);
+				sleep(100);
+			}
+		}
+	</script>
+<body onclick="shoot()">
+
+
+</body>
+</html>
